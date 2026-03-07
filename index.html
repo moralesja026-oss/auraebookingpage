@@ -151,6 +151,7 @@
       transition: transform 0.3s;
     }
 
+    .nav-links a.active { color: var(--cream); }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
@@ -1342,27 +1343,26 @@
       });
     });
 
-    // ─── Nav Active State ────────────────────────
+    // ─── Nav Active State (scroll-based) ─────────
     var sections = document.querySelectorAll('section[id]');
     var links = document.querySelectorAll('.nav-links a');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          links.forEach(function (l) {
-            l.style.color = '';
-            var href = l.getAttribute('href');
-            if (href === '#' + entry.target.id) {
-              l.style.color = 'var(--cream)';
-            }
-            // Keep "Experience" highlighted when in booking section
-            if (href === '#levels' && entry.target.id === 'book') {
-              l.style.color = 'var(--cream)';
-            }
-          });
+    function updateActiveNav() {
+      var scrollPos = window.scrollY + 150;
+      var current = '';
+      sections.forEach(function (s) {
+        if (scrollPos >= s.offsetTop) {
+          current = s.id;
         }
       });
-    }, { threshold: 0.4 });
-    sections.forEach(function (s) { io.observe(s); });
+      links.forEach(function (l) {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) {
+          l.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
 
     // ─── Scroll Animations ──────────────────────
     (function() {
