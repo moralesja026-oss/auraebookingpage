@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURAE | Private Group Sculpt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/arsenica-trial" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #022452;
+      --navy-dark:  #021e47;
+      --navy-mid:   #0a3670;
+      --cream:      #FFFCD8;
+      --cream-dark: #F5F0C8;
+      --black:      #111111;
+      --grey:       #8A8A8A;
+      --grey-light: #D5D0C8;
+      --grey-xlight:#EDEAE4;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ─── Navigation ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #011633;
+      border-bottom: 1px solid rgba(248,249,240,0.08);
+    }
+
+    .nav-logo img {
+      width: 176px;
+      height: 55px;
+      object-fit: cover;
+      object-position: center 48%;
+      display: block;
+      border-radius: 2px;
+      filter: brightness(0.5);
+      mix-blend-mode: lighten;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .nav-logo:hover img { opacity: 1; }
+
+    .nav-logo, .nav-sc-logo {
+      display: block;
+      text-decoration: none;
+    }
+
+    .nav-sc-logo img {
+      height: 165px;
+      width: auto;
+      display: block;
+      filter: brightness(0.5);
+      mix-blend-mode: lighten;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+      margin: -55px 0;
+    }
+
+    .nav-sc-logo:hover img { opacity: 1; }
+
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(248,249,240,0.15);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-social a {
+      color: rgba(248,249,240,0.35);
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-social a:hover { color: var(--cream); }
+
+    .nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.4);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--cream);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+
+    /* ─── Continuous wave texture overlay ──────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='w' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.003 0.009' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeDiffuseLighting surfaceScale='12' diffuseConstant='0.9' lighting-color='white'%3E%3CfeDistantLight azimuth='120' elevation='40'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23w)'/%3E%3C/svg%3E");
+      background-size: 1400px 1400px;
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+    }
+
+    /* Nav texture (sits above body::after due to z-index) */
+    nav {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='w' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.003 0.009' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeDiffuseLighting surfaceScale='14' diffuseConstant='0.6' lighting-color='white'%3E%3CfeDistantLight azimuth='120' elevation='35'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23w)'/%3E%3C/svg%3E");
+      background-size: 1400px 1400px;
+      background-blend-mode: soft-light;
+    }
+
+    /* ─── Gradient bridges between sections ─────────── */
+    .gradient-bridge {
+      width: 100%;
+      height: 300px;
+      pointer-events: none;
+    }
+    .gradient-bridge.cream-to-navy {
+      background: linear-gradient(to bottom, var(--cream), #011633);
+    }
+    .gradient-bridge.navy-to-cream {
+      background: linear-gradient(to bottom, #011633, var(--cream-dark));
+    }
+    .gradient-bridge.cream-to-navy-footer {
+      background: linear-gradient(to bottom, var(--cream-dark), #011633);
+    }
+
+    /* ─── Hero ───────────────────────────────────── */
+    .hero {
+      min-height: auto;
+      background-color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 5rem 2rem 3.5rem;
+      position: relative;
+    }
+
+    .hero-content {
+      position: relative;
+    }
+
+    .hero-logo {
+      width: clamp(380px, 58vw, 680px);
+      height: clamp(180px, 26vw, 320px);
+      margin: 0 auto 1.2rem;
+      overflow: hidden;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(3,40,92,0.5);
+      max-width: 380px;
+      margin: 0 auto 2rem;
+      line-height: 1.9;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      padding: 1.1rem 3.2rem;
+      border: 1px solid rgba(3,40,92,0.25);
+      color: var(--navy);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(3,40,92,0.06);
+      transform: translateX(-101%);
+      transition: transform 0.4s;
+    }
+
+    .btn-hero:hover { border-color: rgba(3,40,92,0.6); }
+    .btn-hero:hover::before { transform: translateX(0); }
+
+    /* ─── Shared ─────────────────────────────────── */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.35);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Arsenica Trial', serif;
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title em { font-style: italic; }
+
+    .divider {
+      width: 32px;
+      height: 1px;
+      background: var(--cream);
+      opacity: 0.15;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── About ──────────────────────────────────── */
+    .about {
+      background-color: var(--cream);
+      text-align: center;
+      padding-bottom: 0;
+    }
+
+    .about-inner {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .about .section-label { color: var(--grey); }
+    .about .section-title { color: var(--navy); }
+    .about .divider { margin-left: auto; margin-right: auto; background: var(--navy); opacity: 0.2; }
+
+    .about p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+
+    .about-details {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--grey-xlight);
+    }
+
+    .about-detail { text-align: center; }
+
+    .about-detail-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-detail-label {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* ─── Choose Your Level ──────────────────────── */
+    .level-section {
+      background-color: #011633;
+      padding: 6rem 2rem 3rem;
+    }
+
+    .level-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .level-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .level-header .divider {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0;
+    }
+
+    .level-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(248,249,240,0.06);
+      border: 1px solid rgba(248,249,240,0.06);
+    }
+
+    .level-card {
+      background: var(--navy);
+      padding: 2.8rem 2.2rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .level-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--cream);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .level-card:hover::before,
+    .level-card.selected::before {
+      transform: scaleX(1);
+    }
+
+    .level-card:hover {
+      background: rgba(248,249,240,0.03);
+    }
+
+    .level-card.selected {
+      background: rgba(248,249,240,0.05);
+      outline: 1px solid rgba(248,249,240,0.2);
+      outline-offset: -1px;
+    }
+
+    .level-card-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 200;
+      line-height: 1;
+      color: rgba(248,249,240,0.04);
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      user-select: none;
+      transition: color 0.4s;
+    }
+
+    .level-card:hover .level-card-number,
+    .level-card.selected .level-card-number {
+      color: rgba(248,249,240,0.08);
+    }
+
+    .level-card-badge {
+      display: inline-block;
+      padding: 0.28rem 0.85rem;
+      border: 1px solid rgba(248,249,240,0.12);
+      font-size: 0.56rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.45);
+      margin-bottom: 1.8rem;
+      width: fit-content;
+    }
+
+    .level-card-title {
+      font-family: 'Arsenica Trial', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+
+    .level-card-subtitle {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.28);
+      margin-bottom: 1.5rem;
+    }
+
+    .level-card-desc {
+      font-size: 0.86rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(248,249,240,0.38);
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .level-card-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .level-card-features li {
+      font-size: 0.74rem;
+      font-weight: 300;
+      color: rgba(248,249,240,0.32);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(248,249,240,0.04);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+
+    .level-card-features li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: rgba(248,249,240,0.25);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .level-card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      background: transparent;
+      border: 1px solid rgba(248,249,240,0.08);
+      color: rgba(248,249,240,0.4);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: auto;
+    }
+
+    .level-card-btn:hover {
+      border-color: rgba(248,249,240,0.3);
+      color: var(--cream);
+    }
+
+    .level-card.selected .level-card-btn {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--navy);
+    }
+
+    .level-card-btn svg { transition: transform 0.3s; }
+    .level-card-btn:hover svg { transform: translateX(4px); }
+
+    /* ─── Section Divider ────────────────────────── */
+    .section-break {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      max-width: 900px;
+      margin: 3rem auto 0;
+    }
+
+    .section-break-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(248,249,240,0.08);
+    }
+
+    .section-break-diamond {
+      width: 6px; height: 6px;
+      background: rgba(248,249,240,0.2);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ─── Booking ────────────────────────────────── */
+    .booking { background-color: #011633; }
+
+    .booking .section-label { color: rgba(248,249,240,0.3); }
+    .booking .section-title { color: var(--cream); }
+    .booking .divider { background: var(--cream); opacity: 0.12; }
+
+    .booking-inner { max-width: 780px; margin: 0 auto; }
+
+    .booking-selected {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.45rem 1.1rem;
+      background: rgba(248,249,240,0.05);
+      border: 1px solid rgba(248,249,240,0.1);
+      margin-bottom: 1.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.55);
+    }
+
+    .booking-selected svg {
+      width: 10px;
+      height: 10px;
+      fill: rgba(248,249,240,0.4);
+    }
+
+    .f-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
+
+    .f-group {
+      background: var(--navy);
+      border: 1px solid rgba(248,249,240,0.06);
+      padding: 1.4rem 1.6rem;
+      transition: border-color 0.3s, background 0.3s;
+      margin-bottom: 1px;
+    }
+
+    .f-group:focus-within {
+      border-color: rgba(248,249,240,0.2);
+      background: rgba(248,249,240,0.03);
+    }
+
+    .f-group.full { grid-column: 1 / -1; }
+
+    .f-label {
+      display: block;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.3);
+      margin-bottom: 0.45rem;
+    }
+
+    .f-input, .f-select, .f-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    .f-input::placeholder, .f-textarea::placeholder { color: rgba(248,249,240,0.14); }
+
+    .f-select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .f-select option { background: var(--navy-dark); color: var(--cream); }
+
+    .f-textarea { resize: none; min-height: 88px; line-height: 1.6; }
+
+    input[type="date"], input[type="time"] { color-scheme: dark; }
+
+    /* ─── Submit & Success ───────────────────────── */
+    .form-submit { margin-top: 2rem; text-align: center; }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 1.1rem 3.5rem;
+      background: var(--cream);
+      border: none;
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(3,40,92,0.08);
+      transform: translateX(-101%);
+      transition: transform 0.4s;
+    }
+
+    .btn-submit:hover { transform: translateY(-2px); }
+    .btn-submit:hover::before { transform: translateX(0); }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border: 1px solid rgba(248,249,240,0.1);
+    }
+
+    .success-msg.show { display: block; }
+
+    .success-check {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(248,249,240,0.25);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+
+    .success-title {
+      font-family: 'Arsenica Trial', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+
+    .success-body {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(248,249,240,0.4);
+      line-height: 1.8;
+    }
+
+    /* ─── Contact ────────────────────────────────── */
+    .contact {
+      background-color: var(--cream-dark);
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+
+    .contact .section-label { color: rgba(2,36,82,0.45); }
+    .contact .section-title { color: #022452; }
+    .contact .divider { background: var(--navy); opacity: 0.2; }
+
+    .contact-info-item { margin-bottom: 2rem; }
+
+    .contact-info-label {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(2,36,82,0.5);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #022452;
+    }
+
+    .contact-info-value a {
+      color: #022452;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .contact-info-value a:hover { opacity: 0.5; }
+
+    .contact-social {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-social a {
+      color: rgba(2,36,82,0.35);
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-social a:hover { color: #022452; }
+    .contact-social svg { width: 20px; height: 20px; fill: rgba(2,36,82,0.35); }
+
+    .c-form-group { margin-bottom: 1.6rem; }
+
+    .c-label {
+      display: block;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(2,36,82,0.7);
+      margin-bottom: 0.5rem;
+    }
+
+    .c-input, .c-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--grey-light);
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--black);
+      padding: 0.4rem 0;
+      transition: border-color 0.3s;
+    }
+
+    .c-input:focus, .c-textarea:focus { border-color: var(--navy); }
+    .c-input::placeholder, .c-textarea::placeholder { color: rgba(2,36,82,0.3); }
+    .c-textarea { resize: none; min-height: 90px; }
+
+    .btn-contact {
+      padding: 0.95rem 2.5rem;
+      background: var(--navy);
+      border: none;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn-contact:hover {
+      background: var(--navy-mid);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Footer ─────────────────────────────────── */
+    footer {
+      background-color: #011633;
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      width: 90px;
+      height: 28px;
+      object-fit: cover;
+      object-position: center 48%;
+      display: block;
+      filter: brightness(0.45);
+      mix-blend-mode: lighten;
+      opacity: 0.35;
+      transition: opacity 0.3s;
+      mix-blend-mode: lighten;
+    }
+
+    .footer-logo:hover img { opacity: 0.6; }
+
+    .footer-text {
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(248,249,240,0.15);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      color: rgba(248,249,240,0.2);
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-social a:hover { color: rgba(248,249,240,0.5); }
+    .footer-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ─── Scroll Animations ──────────────────────── */
+    .slide-in {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide-in {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* ─── Responsive ─────────────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 0.8rem 2rem; }
+      .nav-social svg { width: 15px; height: 15px; }
+      .nav-logo img { width: 132px; height: 42px; }
+      .nav-sc-logo img { height: 126px; margin: -42px 0; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links a { font-size: 0.55rem; letter-spacing: 0.08em; }
+      section { padding: 4rem 2rem; }
+      .f-row { grid-template-columns: 1fr; }
+      .level-cards { grid-template-columns: 1fr; }
+      .about-details { flex-direction: column; gap: 1.5rem; }
+      .contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      .hero-logo {
+        width: clamp(260px, 80vw, 500px);
+        height: clamp(70px, 18vw, 130px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.5rem 0.8rem; }
+      .nav-logo img { width: 80px; height: 25px; }
+      .nav-sc-logo img { height: 75px; margin: -25px 0; }
+      .nav-divider { height: 14px; }
+      .nav-social { display: none; }
+      .nav-left { gap: 0.25rem; }
+      .nav-links { gap: 0.6rem; }
+      .nav-links a { font-size: 0.45rem; letter-spacing: 0.06em; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-left">
+      <div class="nav-brand-group">
+        <a href="index.html" class="nav-logo">
+          <img src="logo-light t.png" alt="AURAE" />
+        </a>
+        <div class="nav-social">
+          <a href="https://www.instagram.com/auraesculptevents/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-brand-group">
+        <a href="sculpt-club.html" class="nav-sc-logo">
+          <img src="6.png" alt="AURAE Sculpt Club" />
+        </a>
+        <div class="nav-social">
+          <a href="https://www.instagram.com/auraesculptclub/" aria-label="Sculpt Club Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#levels">Experience</a></li>
+        <li><a href="#book">Book</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-logo slide-in">
+        <img src="logo-dark t.png" alt="AURAE" id="heroLogo" />
+      </div>
+      <p class="hero-subtitle slide-in">A curated sculpt experience tailored to your group, your goals, and your energy.</p>
+      <a href="#levels" class="btn-hero slide-in">Choose Your Level</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <p class="section-label">The Experience</p>
+      <h2 class="section-title">Sculpt. <em>Together.</em></h2>
+      <div class="divider"></div>
+      <p>AURAE sculpt is where intensity meets intention — high-energy, low-impact sessions built to challenge your muscles without punishing your joints. Build lean endurance, unlock flexibility, and find your balance through deliberate, beat-driven movements that somehow still feel like a good time.</p>
+      <div class="about-details">
+        <div class="about-detail">
+          <div class="about-detail-value">45–60</div>
+          <div class="about-detail-label">Min Sessions</div>
+        </div>
+        <div class="about-detail">
+          <div class="about-detail-value">3</div>
+          <div class="about-detail-label">Difficulty Levels</div>
+        </div>
+        <div class="about-detail">
+          <div class="about-detail-value">Private</div>
+          <div class="about-detail-label">Group Sessions</div>
+        </div>
+        <div class="about-detail">
+          <div class="about-detail-value">Set the Tone</div>
+          <div class="about-detail-label">Music &amp; Energy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient: cream → navy -->
+  <div class="gradient-bridge cream-to-navy"></div>
+
+  <!-- Choose Your Level -->
+  <section class="level-section" id="levels">
+    <div class="level-inner">
+      <div class="level-header">
+        <p class="section-label">Your Journey Starts Here</p>
+        <h2 class="section-title">Choose Your <em>Level</em></h2>
+        <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+      </div>
+      <div class="level-cards">
+        <!-- Foundation -->
+        <div class="level-card" data-level="Foundation" onclick="selectLevel(this)">
+          <span class="level-card-number">01</span>
+          <div class="level-card-badge">Beginner</div>
+          <h3 class="level-card-title">Foundation</h3>
+          <p class="level-card-subtitle">Begin with Confidence</p>
+          <p class="level-card-desc">Perfect for newcomers or those returning after a break. Focus on proper form, body awareness, and low-impact movements at an encouraging pace.</p>
+          <ul class="level-card-features">
+            <li>Low-impact, form-focused movements</li>
+            <li>Guided at a steady, supported pace</li>
+            <li>Build core strength &amp; stability</li>
+            <li>Perfect for all starting fitness levels</li>
+          </ul>
+          <button class="level-card-btn" onclick="selectLevel(this.closest('.level-card'))">
+            Select Foundation
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <!-- Build -->
+        <div class="level-card" data-level="Build" onclick="selectLevel(this)">
+          <span class="level-card-number">02</span>
+          <div class="level-card-badge">Intermediate</div>
+          <h3 class="level-card-title">Build</h3>
+          <p class="level-card-subtitle">Rise Stronger</p>
+          <p class="level-card-desc">For those with a solid fitness base. Progressive resistance, compound movements, and higher-intensity intervals to build endurance and definition.</p>
+          <ul class="level-card-features">
+            <li>Dynamic compound movements</li>
+            <li>Increased intensity &amp; resistance</li>
+            <li>Strength, tone &amp; cardio combined</li>
+            <li>For those ready to level up</li>
+          </ul>
+          <button class="level-card-btn" onclick="selectLevel(this.closest('.level-card'))">
+            Select Build
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <!-- Peak -->
+        <div class="level-card" data-level="Peak" onclick="selectLevel(this)">
+          <span class="level-card-number">03</span>
+          <div class="level-card-badge">Advanced</div>
+          <h3 class="level-card-title">Peak</h3>
+          <p class="level-card-subtitle">Reach Your Summit</p>
+          <p class="level-card-desc">Maximum-intensity training with complex movement patterns and performance-driven programming. Built for those ready to push their limits.</p>
+          <ul class="level-card-features">
+            <li>High-intensity, complex training</li>
+            <li>Advanced sculpting techniques</li>
+            <li>Maximum burn &amp; full-body challenge</li>
+            <li>For experienced, driven athletes</li>
+          </ul>
+          <button class="level-card-btn" onclick="selectLevel(this.closest('.level-card'))">
+            Select Peak
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="section-break">
+        <div class="section-break-line"></div>
+        <div class="section-break-diamond"></div>
+        <div class="section-break-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="booking" id="book">
+    <div class="booking-inner">
+      <p class="section-label">Reserve Your Session</p>
+      <h2 class="section-title">Book <em>Now</em></h2>
+      <div class="divider"></div>
+
+      <div class="booking-selected" id="selectedClassBadge" style="display:none;">
+        <svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg>
+        <span id="selectedClassName"></span> — Selected
+      </div>
+
+      <form id="bookingForm" novalidate>
+        <input type="hidden" name="_subject" value="New AURAE Session Request" />
+        <input type="hidden" name="_replyto" id="bookingReplyTo" />
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="firstName">First Name</label>
+            <input class="f-input" type="text" id="firstName" name="First Name" placeholder="Jane" required />
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="lastName">Last Name</label>
+            <input class="f-input" type="text" id="lastName" name="Last Name" placeholder="Doe" required />
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="email">Email</label>
+            <input class="f-input" type="email" id="email" name="Email" placeholder="jane@example.com" required />
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="phone">Phone</label>
+            <input class="f-input" type="tel" id="phone" name="Phone" placeholder="+1 (000) 000-0000" />
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="classLevel">Class Level</label>
+            <select class="f-input f-select" id="classLevel" name="Class Level" required>
+              <option value="" disabled selected>Select your level</option>
+              <option value="Foundation">Foundation — Beginner</option>
+              <option value="Build">Build — Intermediate</option>
+              <option value="Peak">Peak — Advanced</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="guests">Expected Guests</label>
+            <select class="f-input f-select" id="guests" name="Expected Guests" required>
+              <option value="" disabled selected>Select number</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9+">9+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="sessionDate">Session Date</label>
+            <input class="f-input" type="date" id="sessionDate" name="Session Date" required />
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="sessionTime">Preferred Time</label>
+            <input class="f-input" type="time" id="sessionTime" name="Preferred Time" required />
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group full">
+            <label class="f-label" for="sessionFocus">Session Focus</label>
+            <select class="f-input f-select" id="sessionFocus" name="Session Focus">
+              <option value="" disabled selected>Select focus</option>
+              <option value="full-body">Full Body Sculpt</option>
+              <option value="upper">Upper Body</option>
+              <option value="lower">Lower Body</option>
+              <option value="core">Core &amp; Stability</option>
+              <option value="cardio">Cardio Sculpt</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="f-group full">
+          <label class="f-label" for="music">Music Preferences</label>
+          <textarea class="f-textarea" id="music" name="Music Preferences" placeholder="Genres, artists, energy, or specific songs..."></textarea>
+        </div>
+
+        <div class="f-group full">
+          <label class="f-label" for="notes">Additional Notes</label>
+          <textarea class="f-textarea" id="notes" name="Additional Notes" placeholder="Injuries, goals, or anything we should know..."></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">Request Session</button>
+        </div>
+
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="success-check">&#10003;</div>
+        <h3 class="success-title">Request Received</h3>
+        <p class="success-body">
+          Thank you for booking with AURAE.<br />
+          Your <strong id="confirmedClass" style="color:rgba(248,249,240,0.7);"></strong> session request has been received.<br />
+          We will confirm your session details within 24 hours.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gradient: navy → cream -->
+  <div class="gradient-bridge navy-to-cream"></div>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div>
+      <p class="section-label">Reach Out</p>
+      <h2 class="section-title">Contact <em>Us</em></h2>
+      <div class="divider"></div>
+
+      <div class="contact-info-item">
+        <p class="contact-info-label">Email</p>
+        <p class="contact-info-value"><a href="mailto:auraesculpt@gmail.com">auraesculpt@gmail.com</a></p>
+      </div>
+      <div class="contact-info-item">
+        <p class="contact-info-label">Phone</p>
+        <p class="contact-info-value"><a href="tel:+14422845273">+1 (442) 284-5273</a></p>
+      </div>
+      <div class="contact-info-item">
+        <p class="contact-info-label">Follow Us</p>
+        <div class="contact-social">
+          <a href="https://www.instagram.com/auraesculptevents/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label" style="margin-bottom:1.8rem;color:rgba(2,36,82,0.65);font-weight:500;">Send a Message</p>
+      <form id="contactForm">
+        <input type="hidden" name="_subject" value="New AURAE Contact Message" />
+        <input type="hidden" name="_replyto" id="contactReplyTo" />
+        <div class="c-form-group">
+          <label class="c-label" for="cName">Name</label>
+          <input class="c-input" type="text" id="cName" name="Name" placeholder="Jane Doe" required />
+        </div>
+        <div class="c-form-group">
+          <label class="c-label" for="cEmail">Email</label>
+          <input class="c-input" type="email" id="cEmail" name="Email" placeholder="jane@example.com" required />
+        </div>
+        <div class="c-form-group">
+          <label class="c-label" for="cMessage">Message</label>
+          <textarea class="c-textarea" id="cMessage" name="Message" placeholder="How can we help?" required></textarea>
+        </div>
+        <button type="submit" class="btn-contact" id="contactBtn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Gradient: cream → navy -->
+  <div class="gradient-bridge cream-to-navy-footer"></div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="#home" class="footer-logo">
+      <img src="logo-light t.png" alt="AURAE" />
+    </a>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/auraesculptevents/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="#" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+      </a>
+    </div>
+    <p class="footer-text">&copy; 2026 AURAE &nbsp;&middot;&nbsp; Private Group Sculpt</p>
+  </footer>
+
+  <script>
+    document.getElementById('sessionDate').min = new Date().toISOString().split('T')[0];
+
+    // ─── Card Selection ──────────────────────────
+    function selectLevel(card) {
+      document.querySelectorAll('.level-card').forEach(function(c) { c.classList.remove('selected'); });
+      card.classList.add('selected');
+      var level = card.getAttribute('data-level');
+
+      // Update booking form
+      var classSelect = document.getElementById('classLevel');
+      if (classSelect) classSelect.value = level;
+
+      // Show selected badge
+      document.getElementById('selectedClassName').textContent = level;
+      document.getElementById('selectedClassBadge').style.display = 'inline-flex';
+
+      // Scroll to booking
+      setTimeout(function() {
+        document.getElementById('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+
+    // ─── Booking Form ────────────────────────────
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = this;
+      var classLevel = document.getElementById('classLevel');
+      if (!classLevel.value) {
+        classLevel.closest('.f-group').style.borderColor = 'rgba(248,249,240,0.4)';
+        classLevel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() { classLevel.closest('.f-group').style.borderColor = ''; }, 2000);
+        return;
+      }
+      // Set reply-to from the email field
+      var emailVal = document.getElementById('email').value;
+      document.getElementById('bookingReplyTo').value = emailVal;
+      var btn = form.querySelector('.btn-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch('https://formsubmit.co/ajax/auraesculpt@gmail.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          document.getElementById('confirmedClass').textContent = classLevel.value;
+          form.style.display = 'none';
+          document.getElementById('selectedClassBadge').style.display = 'none';
+          var msg = document.getElementById('successMsg');
+          msg.classList.add('show');
+          msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          btn.textContent = 'Error — Try Again';
+          btn.disabled = false;
+        }
+      }).catch(function () {
+        btn.textContent = 'Error — Try Again';
+        btn.disabled = false;
+      });
+    });
+
+    // ─── Contact Form ────────────────────────────
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = this;
+      var btn = document.getElementById('contactBtn');
+      // Set reply-to from the email field
+      document.getElementById('contactReplyTo').value = document.getElementById('cEmail').value;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch('https://formsubmit.co/ajax/auraesculpt@gmail.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          btn.textContent = 'Sent!';
+          setTimeout(function () {
+            form.reset();
+            btn.textContent = 'Send Message';
+            btn.disabled = false;
+          }, 3000);
+        } else {
+          btn.textContent = 'Error — Try Again';
+          btn.disabled = false;
+        }
+      }).catch(function () {
+        btn.textContent = 'Error — Try Again';
+        btn.disabled = false;
+      });
+    });
+
+    // ─── Nav Active State ────────────────────────
+    var sections = document.querySelectorAll('section[id]');
+    var links = document.querySelectorAll('.nav-links a');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          links.forEach(function (l) {
+            l.style.color = '';
+            var href = l.getAttribute('href');
+            if (href === '#' + entry.target.id) {
+              l.style.color = 'var(--cream)';
+            }
+            // Keep "Experience" highlighted when in booking section
+            if (href === '#levels' && entry.target.id === 'book') {
+              l.style.color = 'var(--cream)';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(function (s) { io.observe(s); });
+
+    // ─── Scroll Animations ──────────────────────
+    (function() {
+      var groups = [
+        // Hero – entrance on page load with stagger
+        { selector: '.hero-logo, .hero-subtitle, .btn-hero', stagger: 0.18 },
+        // About – header elements cascade
+        { selector: '.about .section-label, .about .section-title, .about .divider, .about > p', stagger: 0.1 },
+        // About details – stagger across the row
+        { selector: '.about-detail', stagger: 0.12 },
+        // Level header
+        { selector: '.level-header .section-label, .level-header .section-title, .level-header .divider', stagger: 0.1 },
+        // Level cards – stagger across 3 columns
+        { selector: '.level-card', stagger: 0.15 },
+        // Booking header
+        { selector: '.booking-inner > .section-label, .booking-inner > .section-title, .booking-inner > .divider', stagger: 0.1 },
+        // Booking form rows – each slides in independently
+        { selector: '.booking-inner .f-row, .booking-inner .f-group.full, .booking-inner .form-submit', stagger: 0 },
+        // Contact – left column items cascade
+        { selector: '.contact > div:first-child .section-label, .contact > div:first-child .section-title, .contact > div:first-child .divider, .contact-info-item', stagger: 0.1 },
+        // Contact – right column slides in
+        { selector: '.contact > div:last-child', stagger: 0 },
+      ];
+
+      var allElements = [];
+
+      groups.forEach(function(group) {
+        var els = document.querySelectorAll(group.selector);
+        els.forEach(function(el, i) {
+          el.classList.add('slide-in');
+          if (group.stagger > 0) {
+            el.style.transitionDelay = (i * group.stagger) + 's';
+          }
+          allElements.push(el);
+        });
+      });
+
+      var animObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            animObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      allElements.forEach(function(el) {
+        animObserver.observe(el);
+      });
+    })();
+
+  </script>
+
+</body>
+</html>
