@@ -226,7 +226,10 @@
       object-fit: cover;
       object-position: center center;
       display: block;
-      transform: scale(1.5);
+      transform: scale(1.275);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      image-rendering: -webkit-optimize-contrast;
     }
 
     .btn-hero {
@@ -902,7 +905,7 @@
         height: 35vh;
       }
       .hero-logo img {
-        transform: scale(1.8);
+        transform: scale(1.53);
       }
       .hero-content {
         margin-top: -10vh;
