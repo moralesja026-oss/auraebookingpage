@@ -189,10 +189,23 @@
       color: rgba(248,249,240,0.4);
       text-decoration: none;
       transition: color 0.3s;
+      position: relative;
     }
 
-    .nav-links a:hover,
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--cream);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
     .nav-links a.active { color: var(--cream); }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
 
     /* ─── Hero ───────────────────────────────────── */
     .hero {
@@ -1400,8 +1413,10 @@
       </div>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">Private Sessions</a></li>
-      <li><a href="sculpt-club.html" class="active">Sculpt Club</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
     </ul>
   </nav>
 
@@ -1571,7 +1586,7 @@
       <!-- ✏️ WEEK 1 -->
       <div class="schedule-card fade-up">
         <div class="schedule-week">Week 1</div>
-        <div class="schedule-date">March 5</div>
+        <div class="schedule-date">March 5, 2026</div>
         <div class="schedule-park"><span class="pin-icon"></span> Paloma Del Sol Park</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">Hip-Hop</span>
@@ -1583,7 +1598,7 @@
       <div class="schedule-card next fade-up">
         <span class="schedule-next-badge">NEXT</span>
         <div class="schedule-week">Week 2</div>
-        <div class="schedule-date">March 12</div>
+        <div class="schedule-date">March 12, 2026</div>
         <div class="schedule-park"><span class="pin-icon"></span> Harveston Lake Park</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">Latin Pop</span>
@@ -1594,7 +1609,7 @@
       <!-- ✏️ WEEK 3 -->
       <div class="schedule-card fade-up">
         <div class="schedule-week">Week 3</div>
-        <div class="schedule-date">March 19</div>
+        <div class="schedule-date">March 19, 2026</div>
         <div class="schedule-park"><span class="pin-icon"></span> Alta Murrieta Sports Park</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">House</span>
@@ -1605,7 +1620,7 @@
       <!-- ✏️ WEEK 4 -->
       <div class="schedule-card fade-up">
         <div class="schedule-week">Week 4</div>
-        <div class="schedule-date">March 26</div>
+        <div class="schedule-date">March 26, 2026</div>
         <div class="schedule-park"><span class="pin-icon"></span> Vail Ranch Park</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">R&B</span>
@@ -1647,54 +1662,7 @@
     </div>
   </section>
 
-  <!-- Gradient: navy → cream -->
-  <div class="gradient-bridge navy-to-cream"></div>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- COMMUNITY VIBES                             -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="community" id="community">
-    <p class="section-label fade-up">COMMUNITY VIBES</p>
-    <h2 class="section-title fade-up" style="color:var(--navy);">Real People. <em>Real Energy.</em></h2>
-    <div class="divider fade-up"></div>
-
-    <div class="testimonial-scroll fade-up">
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">This is exactly what I needed — a space to move without pressure. The energy is unmatched and I've made real friendships here.</p>
-        <div class="testimonial-author">Sarah M.</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">I was nervous showing up alone but everyone was so welcoming. Now Wednesdays are the best part of my week.</p>
-        <div class="testimonial-author">Jess K.</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Free, outdoor, fun music, and an incredible community? I tell literally everyone about Sculpt Club.</p>
-        <div class="testimonial-author">Maria L.</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">The rotating parks keep it fresh and the vibes are always immaculate. This is my Wednesday non-negotiable.</p>
-        <div class="testimonial-author">Ashley R.</div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">I've tried so many group fitness options and nothing compares. The fact that it's free is just the cherry on top.</p>
-        <div class="testimonial-author">Nicole T.</div>
-      </div>
-    </div>
-
-    <div class="community-stats fade-up">
-      <span class="community-stat"><strong>50+</strong> Members</span>
-      <span class="community-stat"><strong>20+</strong> Sessions</span>
-      <span class="community-stat"><strong>5</strong> Parks</span>
-    </div>
-  </section>
-
-  <!-- Gradient: cream → navy -->
-  <div class="gradient-bridge cream-to-navy"></div>
+  <!-- How It Works flows directly into Location (both navy) -->
 
   <!-- ═══════════════════════════════════════════ -->
   <!-- LOCATION                                    -->
