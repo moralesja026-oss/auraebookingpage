@@ -486,6 +486,15 @@
       overflow: hidden;
     }
 
+    .next-meetup::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(2,36,82,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
     .next-meetup .section-label { color: rgba(2,36,82,0.45); }
     .next-meetup .section-title { color: var(--navy); }
     .next-meetup .divider { margin: 0 auto 3rem; }
@@ -540,10 +549,10 @@
     .meetup-card {
       max-width: 620px;
       margin: 0 auto;
-      background: white;
-      border-radius: 12px;
+      background: rgba(2,36,82,0.03);
+      border-radius: 20px;
       padding: 3rem;
-      box-shadow: 0 4px 40px rgba(2,36,82,0.06);
+      box-shadow: 0 8px 40px rgba(2,36,82,0.04);
       position: relative;
       z-index: 2;
     }
@@ -580,7 +589,8 @@
 
     .meetup-tag {
       padding: 0.4rem 1rem;
-      border: 1px solid rgba(2,36,82,0.12);
+      background: rgba(2,36,82,0.06);
+      border: 1px solid rgba(2,36,82,0.08);
       border-radius: 30px;
       font-size: 0.6rem;
       font-weight: 500;
@@ -679,6 +689,17 @@
     .schedule {
       background-color: var(--cream);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .schedule::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(2,36,82,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
     }
 
     .schedule .section-label { color: rgba(2,36,82,0.45); }
@@ -694,13 +715,13 @@
     }
 
     .schedule-card {
-      background: white;
-      border-radius: 12px;
+      background: rgba(2,36,82,0.03);
+      border-radius: 16px;
       padding: 2rem 1.5rem;
       text-align: left;
       transition: all 0.4s;
       position: relative;
-      border: 1px solid rgba(2,36,82,0.06);
+      border: 1px solid rgba(2,36,82,0.08);
     }
 
     .schedule-card:hover {
@@ -709,7 +730,8 @@
     }
 
     .schedule-card.next {
-      border-color: rgba(2,36,82,0.2);
+      background: rgba(2,36,82,0.06);
+      border-color: rgba(2,36,82,0.15);
       box-shadow: 0 4px 20px rgba(2,36,82,0.06);
     }
 
@@ -797,7 +819,8 @@
 
     .schedule-tag {
       padding: 0.25rem 0.6rem;
-      border: 1px solid rgba(2,36,82,0.1);
+      background: rgba(2,36,82,0.06);
+      border: 1px solid rgba(2,36,82,0.08);
       border-radius: 30px;
       font-size: 0.5rem;
       font-weight: 500;
@@ -1114,6 +1137,15 @@
       overflow: hidden;
     }
 
+    .rsvp::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(2,36,82,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
     .rsvp .section-label { color: rgba(2,36,82,0.45); }
     .rsvp .section-title { color: var(--navy); }
     .rsvp .divider { margin: 0 auto 1.5rem; }
@@ -1172,9 +1204,9 @@
     .form-group textarea {
       width: 100%;
       padding: 0.85rem 1rem;
-      border: 1.5px solid rgba(2,36,82,0.12);
-      border-radius: 10px;
-      background: white;
+      border: 1.5px solid rgba(2,36,82,0.08);
+      border-radius: 14px;
+      background: rgba(2,36,82,0.03);
       font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
       font-weight: 400;
@@ -1191,7 +1223,7 @@
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--navy);
+      border-color: rgba(2,36,82,0.35);
     }
 
     .form-group select {
@@ -1508,7 +1540,7 @@
       <div class="meetup-date">March 18, 2026</div>
 
       <div class="meetup-tags">
-        <span class="meetup-tag">6:00 PM</span>
+        <span class="meetup-tag">10:00 AM</span>
         <span class="meetup-tag">Alta Murrieta Sports Park</span>
         <span class="meetup-tag">Murrieta</span>
       </div>
