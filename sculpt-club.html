@@ -863,27 +863,7 @@
       position: relative;
     }
 
-    /* Dashed connecting lines */
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: calc(33.33% + 1rem);
-      width: calc(33.33% - 2rem);
-      border-top: 1.5px dashed rgba(248,249,240,0.15);
-      transform: translateY(-50%);
-    }
-
-    .steps::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: calc(33.33% + 1rem);
-      width: calc(33.33% - 2rem);
-      border-top: 1.5px dashed rgba(248,249,240,0.15);
-      transform: translateY(-50%);
-      left: auto;
-    }
+    /* Connecting lines removed — bled through semi-transparent card backgrounds */
 
     .step-card {
       position: relative;
@@ -1385,7 +1365,6 @@
 
       .schedule-grid { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: 1fr; gap: 1.5rem; }
-      .steps::before, .steps::after { display: none; }
       .park-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-row { gap: 2rem; }
 
