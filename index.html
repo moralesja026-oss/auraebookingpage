@@ -158,19 +158,29 @@
 
 
     /* ─── Continuous wave texture overlay ──────────── */
+    @keyframes textureDrift {
+      0%   { transform: translate(0, 0) scale(1.05); }
+      25%  { transform: translate(8vw, -5vh) scale(1.02); }
+      50%  { transform: translate(-5vw, 8vh) scale(1.06); }
+      75%  { transform: translate(-8vw, -3vh) scale(1.03); }
+      100% { transform: translate(0, 0) scale(1.05); }
+    }
+
     body::after {
       content: '';
       position: fixed;
-      top: -20vh;
-      left: -20vw;
-      width: 140vw;
-      height: 140vh;
+      top: -25vh;
+      left: -25vw;
+      width: 150vw;
+      height: 150vh;
       z-index: 1;
       pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4000' height='4000'%3E%3Cfilter id='w' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.003 0.009' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeDiffuseLighting surfaceScale='12' diffuseConstant='0.9' lighting-color='white'%3E%3CfeDistantLight azimuth='120' elevation='40'/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='4000' height='4000' filter='url(%23w)'/%3E%3C/svg%3E");
       background-size: 4000px 4000px;
       opacity: 0.35;
       mix-blend-mode: multiply;
+      animation: textureDrift 32s ease-in-out infinite;
+      will-change: transform;
     }
 
     /* Nav — solid dark navy, no texture */
