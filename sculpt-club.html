@@ -843,6 +843,46 @@
 
     .schedule-note a:hover { text-decoration: underline; }
 
+    .coming-soon-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      max-width: 480px;
+      margin: 2.5rem auto 0;
+      padding: 1.6rem 2rem;
+      border: 1.5px dashed rgba(2,36,82,0.15);
+      border-radius: 16px;
+      background: rgba(2,36,82,0.02);
+      position: relative;
+      z-index: 2;
+    }
+
+    .coming-soon-label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(2,36,82,0.35);
+    }
+
+    .coming-soon-text {
+      font-family: 'Arsenica Trial', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .coming-soon-text em { font-style: italic; }
+
+    .coming-soon-sub {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(2,36,82,0.4);
+      letter-spacing: 0.03em;
+    }
+
     /* ─── How It Works ───────────────────────────── */
     .how-it-works {
       background-color: #011633;
@@ -1642,6 +1682,13 @@
     </div>
 
     <p class="schedule-note fade-up">Follow <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer">@auraesculptclub</a> for real-time updates and location changes.</p>
+
+    <!-- April coming soon banner -->
+    <div class="coming-soon-banner fade-up">
+      <span class="coming-soon-label">UP NEXT</span>
+      <span class="coming-soon-text"><em>April</em> schedule dropping soon</span>
+      <span class="coming-soon-sub">Follow us on Instagram to be the first to know</span>
+    </div>
   </section>
 
   <!-- Gradient: cream → navy -->
