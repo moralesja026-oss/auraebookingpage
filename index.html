@@ -874,6 +874,173 @@
     .footer-social a:hover { color: rgba(248,249,240,0.5); }
     .footer-social svg { width: 16px; height: 16px; fill: currentColor; }
 
+    /* ─── Pop-Up Event Section ─────────────────── */
+    .popup-dark {
+      background-color: #011633;
+      padding: 8rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .popup-dark-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .popup-dark .pd-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.35);
+      margin-bottom: 0.8rem;
+    }
+
+    .popup-dark .pd-title {
+      font-family: 'Arsenica Trial', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+
+    .popup-dark .pd-title em { font-style: italic; }
+
+    .popup-dark .pd-divider {
+      width: 35px;
+      height: 1px;
+      background: var(--cream);
+      opacity: 0.15;
+      margin-bottom: 2rem;
+    }
+
+    .popup-dark .pd-desc {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(248,249,240,0.45);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .pd-details {
+      list-style: none;
+    }
+
+    .pd-details li {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(248,249,240,0.5);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(248,249,240,0.04);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .pd-detail-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.3);
+      min-width: 80px;
+      font-weight: 500;
+    }
+
+    .pd-detail-value {
+      color: rgba(248,249,240,0.7);
+      font-weight: 400;
+    }
+
+    .pd-note {
+      font-size: 0.72rem;
+      color: rgba(248,249,240,0.3);
+      margin-top: 2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .pd-tracker {
+      background: rgba(248,249,240,0.04);
+      border: 1px solid rgba(248,249,240,0.08);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .pd-tracker-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .pd-spots-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 200;
+      color: var(--cream);
+      line-height: 1;
+      display: block;
+    }
+
+    .pd-spots-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248,249,240,0.35);
+      display: block;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .pd-btn {
+      display: inline-block;
+      padding: 1.1rem 3.5rem;
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .pd-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(248,249,240,0.1);
+    }
+
+    .pd-stripe-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      color: rgba(248,249,240,0.25);
+      letter-spacing: 0.1em;
+      margin-top: 1.2rem;
+    }
+
+    @media (max-width: 960px) {
+      .popup-dark { padding: 5rem 2rem; }
+      .popup-dark-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
     /* ─── Scroll Animations ──────────────────────── */
     .slide-in {
       opacity: 0;
@@ -971,6 +1138,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#event">Events</a></li>
         <li><a href="#levels">Experience</a></li>
         <li><a href="#book">Book</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1018,6 +1186,35 @@
 
   <!-- Gradient: cream → navy -->
   <div class="gradient-bridge cream-to-navy"></div>
+
+  <!-- Pop-Up Event -->
+  <section class="popup-dark" id="event">
+    <div class="popup-dark-inner">
+      <div class="pd-left">
+        <p class="pd-label">AURAE EVENTS</p>
+        <h2 class="pd-title">Sunset <em>Sculpt.</em></h2>
+        <div class="pd-divider"></div>
+        <p class="pd-desc">A sculpt session like no other. Join us for an exclusive pop-up at Carlsbad Beach as the sun sets over the Pacific. Limited spots. Curated music. One evening you won't forget.</p>
+        <ul class="pd-details">
+          <li><span class="pd-detail-label">DATE</span><span class="pd-detail-value">Saturday, April 11, 2026</span></li>
+          <li><span class="pd-detail-label">TIME</span><span class="pd-detail-value">6:00 PM</span></li>
+          <li><span class="pd-detail-label">LOCATION</span><span class="pd-detail-value">Carlsbad Beach, CA</span></li>
+          <li><span class="pd-detail-label">PRICE</span><span class="pd-detail-value">$45 per person</span></li>
+          <li><span class="pd-detail-label">INCLUDES</span><span class="pd-detail-value">Full sculpt session + beach vibes</span></li>
+        </ul>
+        <p class="pd-note">Presented by Ori Events</p>
+      </div>
+      <div class="pd-right">
+        <div class="pd-tracker">
+          <p class="pd-tracker-label">AVAILABILITY</p>
+          <span class="pd-spots-number" id="spotsCount">23</span>
+          <span class="pd-spots-text">spots remaining</span>
+          <a href="#" class="pd-btn">Secure Your Spot</a>
+          <p class="pd-stripe-note">Secure checkout via Stripe</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Choose Your Level -->
   <section class="level-section" id="levels">
@@ -1403,6 +1600,12 @@
         { selector: '.about .section-label, .about .section-title, .about .divider, .about > p', stagger: 0.1 },
         // About details – stagger across the row
         { selector: '.about-detail', stagger: 0.12 },
+        // Pop-up event – left column cascades
+        { selector: '.pd-left .pd-label, .pd-left .pd-title, .pd-left .pd-divider, .pd-left .pd-desc', stagger: 0.1 },
+        // Pop-up event – detail items stagger
+        { selector: '.pd-details li', stagger: 0.08 },
+        // Pop-up event – tracker card
+        { selector: '.pd-tracker', stagger: 0 },
         // Level header
         { selector: '.level-header .section-label, .level-header .section-title, .level-header .divider', stagger: 0.1 },
         // Level cards – stagger across 3 columns
