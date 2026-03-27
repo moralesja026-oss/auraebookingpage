@@ -708,9 +708,9 @@
 
     .schedule-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto 2.5rem;
     }
 
@@ -741,6 +741,25 @@
       right: 16px;
       background: var(--navy);
       color: var(--cream);
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 30px;
+    }
+
+    .schedule-card.off {
+      opacity: 0.5;
+      border-style: dashed;
+    }
+
+    .schedule-off-badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      background: var(--grey);
+      color: #fff;
       font-size: 0.5rem;
       font-weight: 600;
       letter-spacing: 0.15em;
@@ -1556,12 +1575,12 @@
       <span class="meetup-badge">Next Session</span>
 
       <!-- ✏️ UPDATE WEEKLY: Change date below -->
-      <div class="meetup-date">March 25, 2026</div>
+      <div class="meetup-date">April 1, 2026</div>
 
       <div class="meetup-tags">
-        <span class="meetup-tag">10:00 AM</span>
-        <span class="meetup-tag">Los Alamos Hills Sports Park</span>
-        <span class="meetup-tag">Murrieta</span>
+        <span class="meetup-tag">9:00 AM</span>
+        <span class="meetup-tag">Galleron Park</span>
+        <span class="meetup-tag">Temecula</span>
       </div>
 
       <div class="meetup-details">
@@ -1631,49 +1650,57 @@
   <section class="schedule" id="schedule">
     <p class="section-label fade-up">MONTHLY SCHEDULE</p>
     <!-- ✏️ UPDATE MONTHLY: Change month below -->
-    <h2 class="section-title fade-up"><em>March</em></h2>
+    <h2 class="section-title fade-up"><em>April</em></h2>
     <div class="divider fade-up"></div>
 
     <div class="schedule-grid">
       <!-- ✏️ WEEK 1 -->
-      <div class="schedule-card fade-up">
+      <div class="schedule-card next fade-up">
+        <span class="schedule-next-badge">NEXT</span>
         <div class="schedule-week">Week 1</div>
-        <div class="schedule-date">4</div>
-        <div class="schedule-park"><span class="pin-icon"></span> Paloma Del Sol Park</div>
+        <div class="schedule-date">1</div>
+        <div class="schedule-park"><span class="pin-icon"></span> Galleron Park, Temecula</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">Hip-Hop</span>
-          <span class="schedule-tag">Lower Body</span>
+          <span class="schedule-tag">Full Body</span>
         </div>
       </div>
 
       <!-- ✏️ WEEK 2 -->
       <div class="schedule-card fade-up">
         <div class="schedule-week">Week 2</div>
-        <div class="schedule-date">11</div>
-        <div class="schedule-park"><span class="pin-icon"></span> Harveston Lake Park</div>
+        <div class="schedule-date">8</div>
+        <div class="schedule-park"><span class="pin-icon"></span> Los Alamos Hills Sports Park, Murrieta</div>
         <div class="schedule-tag-row">
-          <span class="schedule-tag">Latin Pop</span>
-          <span class="schedule-tag">Full Body</span>
+          <span class="schedule-tag">Latin / Reggaeton</span>
+          <span class="schedule-tag">Lower Body</span>
         </div>
       </div>
 
       <!-- ✏️ WEEK 3 -->
       <div class="schedule-card fade-up">
         <div class="schedule-week">Week 3</div>
-        <div class="schedule-date">18</div>
-        <div class="schedule-park"><span class="pin-icon"></span> Los Alamos Hills Sports Park</div>
+        <div class="schedule-date">15</div>
+        <div class="schedule-park"><span class="pin-icon"></span> Wheatfield Park, Menifee</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">House</span>
-          <span class="schedule-tag">Lower Body</span>
+          <span class="schedule-tag">Core</span>
         </div>
       </div>
 
       <!-- ✏️ WEEK 4 -->
-      <div class="schedule-card next fade-up">
-        <span class="schedule-next-badge">NEXT</span>
+      <div class="schedule-card off fade-up">
+        <span class="schedule-off-badge">OFF DAY</span>
         <div class="schedule-week">Week 4</div>
-        <div class="schedule-date">25</div>
-        <div class="schedule-park"><span class="pin-icon"></span> Los Alamos Hills Sports Park</div>
+        <div class="schedule-date">22</div>
+        <div class="schedule-park">Recovery Week</div>
+      </div>
+
+      <!-- ✏️ WEEK 5 -->
+      <div class="schedule-card fade-up">
+        <div class="schedule-week">Week 5</div>
+        <div class="schedule-date">29</div>
+        <div class="schedule-park"><span class="pin-icon"></span> Galleron Park, Temecula</div>
         <div class="schedule-tag-row">
           <span class="schedule-tag">Pop</span>
           <span class="schedule-tag">Full Body</span>
@@ -1681,14 +1708,7 @@
       </div>
     </div>
 
-    <p class="schedule-note fade-up">Follow <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer">@auraesculptclub</a> for real-time updates and location changes.</p>
-
-    <!-- April coming soon banner -->
-    <div class="coming-soon-banner fade-up">
-      <span class="coming-soon-label">UP NEXT</span>
-      <span class="coming-soon-text"><em>April</em> schedule dropping soon</span>
-      <span class="coming-soon-sub">Follow us on Instagram to be the first to know</span>
-    </div>
+    <p class="schedule-note fade-up">All sessions start at 9:00 AM. Follow <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer">@auraesculptclub</a> for real-time updates and location changes.</p>
   </section>
 
   <!-- Gradient: cream → navy -->
@@ -1822,7 +1842,10 @@
           <label for="session">Which Session</label>
           <select id="session" name="session" required>
             <option value="" disabled selected>Select a date</option>
-            <option value="March 25 - Los Alamos Hills Sports Park">March 25 - Los Alamos Hills Sports Park</option>
+            <option value="April 1 - Galleron Park, Temecula">April 1 - Galleron Park, Temecula</option>
+            <option value="April 8 - Los Alamos Hills Sports Park, Murrieta">April 8 - Los Alamos Hills Sports Park, Murrieta</option>
+            <option value="April 15 - Wheatfield Park, Menifee">April 15 - Wheatfield Park, Menifee</option>
+            <option value="April 29 - Galleron Park, Temecula">April 29 - Galleron Park, Temecula</option>
             <option value="Any upcoming session">Any upcoming session</option>
           </select>
         </div>
