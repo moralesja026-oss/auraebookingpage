@@ -1053,9 +1053,9 @@
       font-weight: 300;
     }
 
-    /* Part C: Spot Tracker */
+    /* Part C: Event Countdown */
     .pe-tracker {
-      max-width: 460px;
+      max-width: 520px;
       margin: 5.5rem auto 0;
       text-align: center;
       padding: 3.2rem 3rem;
@@ -1072,27 +1072,46 @@
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: rgba(255,252,216,0.28);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.2rem;
     }
 
-    .pe-spots-number {
-      display: block;
+    .pe-countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .pe-countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pe-countdown-number {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(3.5rem, 7vw, 5rem);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 200;
       color: var(--cream);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
 
-    .pe-spots-text {
-      display: block;
-      font-size: 0.62rem;
+    .pe-countdown-label {
+      font-size: 0.5rem;
       font-weight: 400;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: rgba(255,252,216,0.3);
-      margin-bottom: 2.2rem;
+    }
+
+    .pe-countdown-sep {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 200;
+      color: rgba(255,252,216,0.15);
+      align-self: flex-start;
+      margin-top: 0.2rem;
     }
 
     .pe-btn {
@@ -1142,7 +1161,9 @@
       .pe-header { margin-bottom: 3.5rem; }
       .pe-content { gap: 2.5rem; }
       .pe-flyer-frame { max-width: 320px; }
-      .pe-tracker { margin-top: 4rem; padding: 2.5rem 2rem; }
+      .pe-tracker { margin-top: 4rem; padding: 2.5rem 1.5rem; }
+      .pe-countdown { gap: 1rem; }
+      .pe-countdown-sep { font-size: 1.5rem; }
       .pe-info-list li { flex-direction: column; gap: 0.3rem; }
       .pe-info-label { min-width: auto; }
     }
@@ -1336,11 +1357,30 @@
       </div>
     </div>
 
-    <!-- Part C: Spot Tracker + CTA -->
+    <!-- Part C: Event Countdown + CTA -->
     <div class="pe-tracker slide-in">
-      <p class="pe-tracker-label">Availability</p>
-      <span class="pe-spots-number" id="spotsCount">20</span>
-      <span class="pe-spots-text">spots remaining</span>
+      <p class="pe-tracker-label">Event Countdown</p>
+      <div class="pe-countdown" id="eventCountdown">
+        <div class="pe-countdown-unit">
+          <span class="pe-countdown-number" id="cdDays">--</span>
+          <span class="pe-countdown-label">Days</span>
+        </div>
+        <span class="pe-countdown-sep">:</span>
+        <div class="pe-countdown-unit">
+          <span class="pe-countdown-number" id="cdHours">--</span>
+          <span class="pe-countdown-label">Hours</span>
+        </div>
+        <span class="pe-countdown-sep">:</span>
+        <div class="pe-countdown-unit">
+          <span class="pe-countdown-number" id="cdMins">--</span>
+          <span class="pe-countdown-label">Min</span>
+        </div>
+        <span class="pe-countdown-sep">:</span>
+        <div class="pe-countdown-unit">
+          <span class="pe-countdown-number" id="cdSecs">--</span>
+          <span class="pe-countdown-label">Sec</span>
+        </div>
+      </div>
       <a href="https://buy.stripe.com/14A14ndtrgXLbuQ6wbbV600" class="pe-btn" target="_blank" rel="noopener noreferrer">Secure Your Spot</a>
       <p class="pe-stripe-note">Secure checkout via Stripe</p>
     </div>
@@ -1791,6 +1831,41 @@
           btn.classList.add('revealed');
         }
       }, { passive: true });
+    })();
+
+    // ─── Beach Sculpt Countdown: April 11, 2026 11:00 AM PT ────────────
+    (function() {
+      var eventDate = new Date('2026-04-11T11:00:00-07:00');
+      var daysEl = document.getElementById('cdDays');
+      var hrsEl = document.getElementById('cdHours');
+      var minEl = document.getElementById('cdMins');
+      var secEl = document.getElementById('cdSecs');
+      if (!daysEl) return;
+
+      function pad(n) { return n < 10 ? '0' + n : n; }
+
+      function tick() {
+        var now = new Date();
+        var diff = eventDate - now;
+        if (diff <= 0) {
+          daysEl.textContent = '0';
+          hrsEl.textContent = '00';
+          minEl.textContent = '00';
+          secEl.textContent = '00';
+          return;
+        }
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        daysEl.textContent = d;
+        hrsEl.textContent = pad(h);
+        minEl.textContent = pad(m);
+        secEl.textContent = pad(s);
+      }
+
+      tick();
+      setInterval(tick, 1000);
     })();
 
   </script>
