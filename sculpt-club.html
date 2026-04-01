@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURAE Sculpt Club | Free Weekly Community Sculpt</title>
+  <title>AURAE Sculpt Club | Community Sculpt Sessions</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -356,6 +356,13 @@
       box-shadow: 0 12px 30px rgba(2,36,82,0.25);
     }
 
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     .btn-pill-outline {
       display: inline-block;
       padding: 0.9rem 2.5rem;
@@ -498,6 +505,23 @@
     .next-meetup .section-label { color: rgba(2,36,82,0.45); }
     .next-meetup .section-title { color: var(--navy); }
     .next-meetup .divider { margin: 0 auto 3rem; }
+
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .evening-meetup {
+      border-color: rgba(2,36,82,0.15);
+      background: rgba(2,36,82,0.05);
+    }
+
+    .evening-badge-alt {
+      background: var(--navy-mid);
+    }
 
     /* Energy rings decoration */
     .energy-rings {
@@ -1339,6 +1363,188 @@
       line-height: 1.7;
     }
 
+    /* ─── Evening Classes ─────────────────────────── */
+    .evening {
+      background-color: var(--cream);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .evening::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(2,36,82,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .evening .section-label { color: rgba(2,36,82,0.45); }
+    .evening .section-title { color: var(--navy); }
+    .evening .divider { margin: 0 auto 1.5rem; }
+
+    .evening-subtitle {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: rgba(2,36,82,0.5);
+      max-width: 540px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .evening-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(2,36,82,0.04);
+      border: 1px solid rgba(2,36,82,0.1);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .evening-badge {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--cream);
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1.5rem;
+    }
+
+    .evening-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .evening-detail-label {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(2,36,82,0.35);
+      margin-bottom: 0.25rem;
+    }
+
+    .evening-detail-value {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .evening-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .evening-price-note {
+      font-size: 0.7rem;
+      color: rgba(2,36,82,0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .evening-card .btn-pill {
+      margin-top: 0;
+    }
+
+    /* ─── RSVP Class Type Toggle ─────────────────── */
+    .class-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .class-toggle-btn {
+      padding: 0.7rem 1.5rem;
+      border: 1.5px solid rgba(2,36,82,0.12);
+      border-radius: 50px;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(2,36,82,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .class-toggle-btn.active {
+      background: var(--navy);
+      color: var(--cream);
+      border-color: var(--navy);
+    }
+
+    .class-toggle-btn:hover:not(.active) {
+      border-color: rgba(2,36,82,0.3);
+      color: rgba(2,36,82,0.7);
+    }
+
+    /* Mat borrowing field */
+    .mat-field { margin-top: -0.5rem; margin-bottom: 1rem; }
+
+    .mat-options {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .mat-option {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid rgba(2,36,82,0.08);
+      border-radius: 14px;
+      background: rgba(2,36,82,0.03);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .mat-option:hover:not(.active):not(.disabled) {
+      border-color: rgba(2,36,82,0.25);
+    }
+
+    .mat-option.active {
+      border-color: var(--navy);
+      background: rgba(2,36,82,0.07);
+      font-weight: 500;
+    }
+
+    .mat-option.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .mat-counter {
+      font-size: 0.6rem;
+      color: rgba(2,36,82,0.35);
+      text-align: center;
+      margin-top: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Evening session fields (hidden by default) */
+    .evening-fields { display: none; }
+    .evening-fields.show { display: block; }
+
     /* ─── CTA Section ────────────────────────────── */
     .cta {
       background-color: #011633;
@@ -1426,7 +1632,9 @@
       .steps { grid-template-columns: 1fr; gap: 1.5rem; }
       .park-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-row { gap: 2rem; }
+      .evening-details { grid-template-columns: 1fr 1fr; }
 
+      .upcoming-grid { grid-template-columns: 1fr; }
       .energy-rings { display: none; }
       .meetup-details { grid-template-columns: 1fr; }
     }
@@ -1485,7 +1693,8 @@
     </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#schedule">Wednesdays</a></li>
+      <li><a href="#evening-classes">Evenings</a></li>
       <li><a href="#location">Location</a></li>
       <li><a href="#rsvp">RSVP</a></li>
     </ul>
@@ -1505,31 +1714,24 @@
 
       <div class="hero-day fade-up">
         <span class="pulse-dot"></span>
-        Every Wednesday
+        Wednesdays &middot; Tuesdays &middot; Thursdays
       </div>
 
-      <h1 class="hero-tagline fade-up">Your Wednesday <em>Sweat.</em></h1>
-      <p class="hero-subtitle fade-up">Free outdoor sculpt. Move together. Join the community.</p>
+      <h1 class="hero-tagline fade-up">Move. Sculpt. <em>Repeat.</em></h1>
+      <p class="hero-subtitle fade-up">Free Wednesday community sculpt &amp; evening paid classes. Outdoor sessions built for every level.</p>
 
-      <a href="#rsvp" class="btn-pill fade-up">RSVP for Free</a>
+      <div class="hero-buttons fade-up">
+        <a href="#rsvp" class="btn-pill">RSVP Free Wednesday</a>
+        <a href="#rsvp" class="btn-pill-outline" onclick="selectEvening()">Book Evening — $10</a>
+      </div>
     </div>
 
     <!-- Scrolling ticker -->
     <div class="hero-ticker">
       <div class="hero-ticker-track">
-        <span class="hero-ticker-text">FREE</span>
+        <span class="hero-ticker-text">FREE WEDNESDAYS</span>
         <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">EVERY WEDNESDAY</span>
-        <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">ALL LEVELS</span>
-        <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">OUTDOOR</span>
-        <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">TEMECULA & MURRIETA</span>
-        <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">FREE</span>
-        <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">EVERY WEDNESDAY</span>
+        <span class="hero-ticker-text">EVENING CLASSES</span>
         <span class="hero-ticker-text">&middot;</span>
         <span class="hero-ticker-text">ALL LEVELS</span>
         <span class="hero-ticker-text">&middot;</span>
@@ -1537,9 +1739,19 @@
         <span class="hero-ticker-text">&middot;</span>
         <span class="hero-ticker-text">TEMECULA & MURRIETA</span>
         <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">FREE</span>
+        <span class="hero-ticker-text">FREE WEDNESDAYS</span>
         <span class="hero-ticker-text">&middot;</span>
-        <span class="hero-ticker-text">EVERY WEDNESDAY</span>
+        <span class="hero-ticker-text">EVENING CLASSES</span>
+        <span class="hero-ticker-text">&middot;</span>
+        <span class="hero-ticker-text">ALL LEVELS</span>
+        <span class="hero-ticker-text">&middot;</span>
+        <span class="hero-ticker-text">OUTDOOR</span>
+        <span class="hero-ticker-text">&middot;</span>
+        <span class="hero-ticker-text">TEMECULA & MURRIETA</span>
+        <span class="hero-ticker-text">&middot;</span>
+        <span class="hero-ticker-text">FREE WEDNESDAYS</span>
+        <span class="hero-ticker-text">&middot;</span>
+        <span class="hero-ticker-text">EVENING CLASSES</span>
         <span class="hero-ticker-text">&middot;</span>
         <span class="hero-ticker-text">ALL LEVELS</span>
         <span class="hero-ticker-text">&middot;</span>
@@ -1568,41 +1780,69 @@
     </div>
 
     <p class="section-label fade-up">UP NEXT</p>
-    <h2 class="section-title fade-up">This <em>Wednesday</em></h2>
+    <h2 class="section-title fade-up">Upcoming <em>Sessions</em></h2>
     <div class="divider fade-up"></div>
 
-    <div class="meetup-card fade-up">
-      <span class="meetup-badge">Next Session</span>
-
-      <!-- ✏️ UPDATE WEEKLY: Change date below -->
-      <div class="meetup-date">April 1, 2026</div>
-
-      <div class="meetup-tags">
-        <span class="meetup-tag">9:00 AM</span>
-        <span class="meetup-tag">Galleron Park</span>
-        <span class="meetup-tag">Temecula</span>
+    <div class="upcoming-grid">
+      <!-- Wednesday Free -->
+      <div class="meetup-card fade-up">
+        <span class="meetup-badge">Free Wednesday</span>
+        <div class="meetup-date">April 1, 2026</div>
+        <div class="meetup-tags">
+          <span class="meetup-tag">9:00 AM</span>
+          <span class="meetup-tag">Galleron Park</span>
+          <span class="meetup-tag">Temecula</span>
+        </div>
+        <div class="meetup-details">
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Weekly Vibe</div>
+            <div class="meetup-detail-value">Pop</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Focus Area</div>
+            <div class="meetup-detail-value">Full Body</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">What to Bring</div>
+            <div class="meetup-detail-value">Mat, water, light weights</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Duration</div>
+            <div class="meetup-detail-value">45 minutes</div>
+          </div>
+        </div>
+        <a href="#rsvp" class="btn-pill">RSVP Free</a>
       </div>
 
-      <div class="meetup-details">
-        <div class="meetup-detail-item">
-          <div class="meetup-detail-label">Weekly Vibe</div>
-          <div class="meetup-detail-value">Pop</div>
+      <!-- Evening Paid -->
+      <div class="meetup-card evening-meetup fade-up">
+        <span class="meetup-badge evening-badge-alt">Evening Class — $10</span>
+        <div class="meetup-date">Every Tues & Thurs</div>
+        <div class="meetup-tags">
+          <span class="meetup-tag">6:00 PM</span>
+          <span class="meetup-tag">Los Alamos Hills Sports Park</span>
+          <span class="meetup-tag">Murrieta</span>
         </div>
-        <div class="meetup-detail-item">
-          <div class="meetup-detail-label">Focus Area</div>
-          <div class="meetup-detail-value">Full Body</div>
+        <div class="meetup-details">
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Format</div>
+            <div class="meetup-detail-value">Small Group</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Focus Area</div>
+            <div class="meetup-detail-value">Full Body Sculpt</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">What to Bring</div>
+            <div class="meetup-detail-value">Mat (or borrow ours), water</div>
+          </div>
+          <div class="meetup-detail-item">
+            <div class="meetup-detail-label">Duration</div>
+            <div class="meetup-detail-value">45 minutes</div>
+          </div>
         </div>
-        <div class="meetup-detail-item">
-          <div class="meetup-detail-label">What to Bring</div>
-          <div class="meetup-detail-value">Mat, water, light weights</div>
-        </div>
-        <div class="meetup-detail-item">
-          <div class="meetup-detail-label">Duration</div>
-          <div class="meetup-detail-value">45 minutes</div>
-        </div>
+        <a href="#rsvp" class="btn-pill" onclick="selectEvening()">Book Evening</a>
       </div>
-
-      <a href="#rsvp" class="btn-pill">RSVP Now</a>
     </div>
   </section>
 
@@ -1615,29 +1855,11 @@
   <section class="about" id="about">
     <div class="about-inner">
       <p class="section-label fade-up">WHAT IS SCULPT CLUB</p>
-      <h2 class="section-title fade-up">Community <em>First.</em></h2>
+      <h2 class="section-title fade-up">Two Ways to <em>Sculpt.</em></h2>
       <div class="divider fade-up"></div>
-      <p class="fade-up">Sculpt Club is a free, weekly outdoor sculpt session built for people who want to move, connect, and feel good. No membership, no sign-up fee, no strings attached — just 45 minutes of intentional, beat-driven movement under the open sky.</p>
-      <p class="fade-up">Every week brings a different music genre and training focus, so no two sessions ever feel the same. Whether you live in leggings or you're trying sculpt for the first time, there's a spot for you.</p>
+      <p class="fade-up">Sculpt Club is outdoor, beat-driven movement built for everyone. Beginner friendly, zero intimidation, all good energy. Whether it's your first class or your fiftieth, you'll feel welcome the moment you show up. Free Wednesday sessions bring the community together at rotating parks. Evening classes on Tuesdays and Thursdays offer focused, small-group training at a dedicated location.</p>
+      <p class="fade-up">This isn't about perfection. It's about showing up, having fun, and leaving feeling rewarded. Real people, real music, real results. Same energy, same intention, same AURAE. Just pick the format that fits your week. No membership required for either. Just community, movement, and a whole lot of good vibes.</p>
 
-      <div class="stat-row">
-        <div class="stat-item fade-up">
-          <div class="stat-number serif">Free</div>
-          <div class="stat-label">ALWAYS</div>
-        </div>
-        <div class="stat-item fade-up">
-          <div class="stat-number">45 min</div>
-          <div class="stat-label">SESSIONS</div>
-        </div>
-        <div class="stat-item fade-up">
-          <div class="stat-number serif">Every</div>
-          <div class="stat-label">WEDNESDAY</div>
-        </div>
-        <div class="stat-item fade-up">
-          <div class="stat-number serif">All</div>
-          <div class="stat-label">LEVELS</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1648,9 +1870,9 @@
   <!-- MONTHLY SCHEDULE                            -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="schedule" id="schedule">
-    <p class="section-label fade-up">MONTHLY SCHEDULE</p>
+    <p class="section-label fade-up">WEDNESDAY SCHEDULE</p>
     <!-- ✏️ UPDATE MONTHLY: Change month below -->
-    <h2 class="section-title fade-up"><em>April</em></h2>
+    <h2 class="section-title fade-up">April <em>Free Sessions</em></h2>
     <div class="divider fade-up"></div>
 
     <div class="schedule-grid">
@@ -1708,7 +1930,45 @@
       </div>
     </div>
 
-    <p class="schedule-note fade-up">All sessions start at 9:00 AM. Follow <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer">@auraesculptclub</a> for real-time updates and location changes.</p>
+    <p class="schedule-note fade-up">Free Wednesdays start at 9:00 AM. Evening classes (Tues & Thurs, 6 PM) run weekly at Los Alamos Hills Sports Park. Follow <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer">@auraesculptclub</a> for updates.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EVENING SCHEDULE                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="evening" id="evening-classes">
+    <p class="section-label fade-up">EVENING SCULPT</p>
+    <h2 class="section-title fade-up">Tuesdays & <em>Thursdays</em></h2>
+    <div class="divider fade-up"></div>
+    <p class="evening-subtitle fade-up">Small-group evening sessions with focused coaching. Same energy, deeper work — just after sunset.</p>
+
+    <div class="evening-card fade-up">
+      <span class="evening-badge">Now Booking</span>
+
+      <div class="evening-details">
+        <div>
+          <div class="evening-detail-label">Days</div>
+          <div class="evening-detail-value">Every Tuesday & Thursday</div>
+        </div>
+        <div>
+          <div class="evening-detail-label">Time</div>
+          <div class="evening-detail-value">6:00 PM</div>
+        </div>
+        <div>
+          <div class="evening-detail-label">Duration</div>
+          <div class="evening-detail-value">45 minutes</div>
+        </div>
+        <div>
+          <div class="evening-detail-label">Location</div>
+          <div class="evening-detail-value">Los Alamos Hills Sports Park, Murrieta</div>
+        </div>
+      </div>
+
+      <div class="evening-price">$10</div>
+      <p class="evening-price-note">per class &middot; RSVP required &middot; mats available to borrow</p>
+
+      <a href="#rsvp" class="btn-pill" onclick="selectEvening()">Reserve Evening Spot</a>
+    </div>
   </section>
 
   <!-- Gradient: cream → navy -->
@@ -1725,13 +1985,13 @@
     <div class="steps">
       <div class="step-card fade-up">
         <span class="step-watermark">01</span>
-        <h3>Show Up</h3>
-        <p>Check the weekly location on Instagram, grab your mat, and head to the park. No reservations needed.</p>
+        <h3>Pick Your Session</h3>
+        <p>Free Wednesday morning, or a paid Tuesday/Thursday evening — choose whatever fits your schedule and RSVP.</p>
       </div>
       <div class="step-card fade-up">
         <span class="step-watermark">02</span>
         <h3>Move Together</h3>
-        <p>45 minutes of beat-driven sculpt in the open air. New music, new focus, new energy every single week.</p>
+        <p>45 minutes of beat-driven sculpt in the open air. New music, new focus, new energy every single session.</p>
       </div>
       <div class="step-card fade-up">
         <span class="step-watermark">03</span>
@@ -1803,22 +2063,29 @@
     </div>
 
     <p class="section-label fade-up">SAVE YOUR SPOT</p>
-    <h2 class="section-title fade-up" style="color:var(--navy);">RSVP <em>for Free</em></h2>
+    <h2 class="section-title fade-up" style="color:var(--navy);" id="rsvp-title">RSVP <em>for Free</em></h2>
     <div class="divider fade-up"></div>
-    <p class="rsvp-subtitle fade-up">No commitment, no cost. Just let us know you're coming so we can plan the best session for everyone.</p>
+    <p class="rsvp-subtitle fade-up" id="rsvp-subtitle">No commitment, no cost. Just let us know you're coming so we can plan the best session for everyone.</p>
+
+    <!-- Class type toggle -->
+    <div class="class-toggle fade-up">
+      <button type="button" class="class-toggle-btn active" id="toggleFree" onclick="switchClassType('free')">Wednesday Free</button>
+      <button type="button" class="class-toggle-btn" id="toggleEvening" onclick="switchClassType('evening')">Evening Class — $10</button>
+    </div>
 
     <!-- Thank you state (shown after form submission) -->
     <div class="rsvp-thanks" id="rsvp-thanks">
       <div class="rsvp-thanks-icon">&#10024;</div>
       <h3>You're In!</h3>
-      <p>We'll see you Wednesday. Check our Instagram for the exact location and any last-minute updates.</p>
+      <p id="thanks-message">We'll see you Wednesday. Check our Instagram for the exact location and any last-minute updates.</p>
     </div>
 
     <form class="rsvp-form fade-up" action="https://formspree.io/f/meepknbb" method="POST">
       <!-- Formspree hidden fields -->
-      <input type="hidden" name="_subject" value="New Sculpt Club RSVP!" />
+      <input type="hidden" name="_subject" value="New Sculpt Club RSVP!" id="formSubject" />
       <input type="text" name="_gotcha" style="display:none" />
       <input type="hidden" name="_next" value="https://moralesja026-oss.github.io/auraebookingpage/sculpt-club.html#rsvp-thanks" />
+      <input type="hidden" name="class_type" id="classTypeField" value="Wednesday Free Sculpt" />
 
       <div class="form-row">
         <div class="form-group">
@@ -1838,14 +2105,35 @@
         </div>
         <div class="form-group">
           <label for="session">Which Session</label>
+          <!-- Free Wednesday sessions -->
           <select id="session" name="session" required>
             <option value="" disabled selected>Select a date</option>
-            <option value="April 1 - Galleron Park, Temecula">April 1 - Galleron Park, Temecula</option>
-            <option value="April 8 - Los Alamos Hills Sports Park, Murrieta">April 8 - Los Alamos Hills Sports Park, Murrieta</option>
-            <option value="April 15 - Wheatfield Park, Menifee">April 15 - Wheatfield Park, Menifee</option>
-            <option value="April 29 - Galleron Park, Temecula">April 29 - Galleron Park, Temecula</option>
+            <option value="April 1 - Galleron Park, Temecula">April 1 — Galleron Park, Temecula</option>
+            <option value="April 8 - Los Alamos Hills Sports Park, Murrieta">April 8 — Los Alamos Hills Sports Park, Murrieta</option>
+            <option value="April 15 - Wheatfield Park, Menifee">April 15 — Wheatfield Park, Menifee</option>
+            <option value="April 29 - Galleron Park, Temecula">April 29 — Galleron Park, Temecula</option>
             <option value="Any upcoming session">Any upcoming session</option>
           </select>
+          <!-- Evening sessions (hidden by default) -->
+          <select id="sessionEvening" name="session_evening" style="display:none" disabled>
+            <option value="" disabled selected>Select a day</option>
+            <option value="Tuesday Evening - Los Alamos Hills Sports Park">Tuesday 6 PM — Los Alamos Hills Sports Park</option>
+            <option value="Thursday Evening - Los Alamos Hills Sports Park">Thursday 6 PM — Los Alamos Hills Sports Park</option>
+            <option value="Both Tues & Thurs - Los Alamos Hills Sports Park">Both Tues & Thurs — Los Alamos Hills Sports Park</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Evening-only: Mat borrowing -->
+      <div class="evening-fields" id="eveningFields">
+        <div class="form-group mat-field">
+          <label>Mat Preference</label>
+          <input type="hidden" name="mat_preference" id="matField" value="" />
+          <div class="mat-options">
+            <button type="button" class="mat-option" id="matOwn" onclick="selectMat('own')">Bringing my own</button>
+            <button type="button" class="mat-option" id="matBorrow" onclick="selectMat('borrow')">Borrow a mat</button>
+          </div>
+          <p class="mat-counter" id="matCounter"><span id="matsLeft">10</span> loaner mats available</p>
         </div>
       </div>
 
@@ -1873,7 +2161,7 @@
       </div>
 
       <div class="form-submit-wrap">
-        <button type="submit" class="btn-submit">Count Me In</button>
+        <button type="submit" class="btn-submit" id="submitBtn">Count Me In</button>
       </div>
     </form>
   </section>
@@ -1885,10 +2173,10 @@
   <!-- CTA                                         -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="cta">
-    <h2 class="section-title fade-up">See You <em>Wednesday.</em></h2>
+    <h2 class="section-title fade-up">See You <em>Out There.</em></h2>
     <div class="cta-buttons fade-up">
-      <a href="#rsvp" class="btn-pill-light">RSVP for Free</a>
-      <a href="https://www.instagram.com/auraesculptclub/" target="_blank" rel="noopener noreferrer" class="btn-pill-outline" style="color:var(--cream);border-color:rgba(248,249,240,0.25);">Follow on Instagram</a>
+      <a href="#rsvp" class="btn-pill-light">RSVP for Free Wednesday</a>
+      <a href="#rsvp" class="btn-pill-outline" style="color:var(--cream);border-color:rgba(248,249,240,0.25);" onclick="selectEvening()">Book Evening Class — $10</a>
     </div>
   </section>
 
@@ -1972,6 +2260,96 @@
 
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
+
+    // ─── Class Type Toggle (Free vs Evening) ─────
+    const MAX_MATS = 10;
+    let matsReserved = 0; // ✏️ UPDATE: increment as mats get reserved
+    let currentClassType = 'free';
+
+    function switchClassType(type) {
+      currentClassType = type;
+      const isFree = type === 'free';
+
+      // Toggle buttons
+      document.getElementById('toggleFree').classList.toggle('active', isFree);
+      document.getElementById('toggleEvening').classList.toggle('active', !isFree);
+
+      // Swap session dropdowns
+      const freeSelect = document.getElementById('session');
+      const eveningSelect = document.getElementById('sessionEvening');
+      freeSelect.style.display = isFree ? '' : 'none';
+      freeSelect.disabled = !isFree;
+      freeSelect.required = isFree;
+      eveningSelect.style.display = isFree ? 'none' : '';
+      eveningSelect.disabled = isFree;
+      eveningSelect.required = !isFree;
+
+      // Show/hide evening-only fields
+      const eveningFields = document.getElementById('eveningFields');
+      eveningFields.classList.toggle('show', !isFree);
+
+      // Update hidden class type field
+      document.getElementById('classTypeField').value = isFree ? 'Wednesday Free Sculpt' : 'Evening Paid Class ($10)';
+
+      // Update subject line
+      document.getElementById('formSubject').value = isFree ? 'New Sculpt Club RSVP!' : 'New Evening Class RSVP — $10';
+
+      // Update title & subtitle
+      document.getElementById('rsvp-title').innerHTML = isFree ? 'RSVP <em>for Free</em>' : 'RSVP <em>Evening Class</em>';
+      document.getElementById('rsvp-subtitle').textContent = isFree
+        ? 'No commitment, no cost. Just let us know you\'re coming so we can plan the best session for everyone.'
+        : 'Reserve your spot for an evening sculpt session. $10 per class, paid at the session.';
+
+      // Update submit button
+      document.getElementById('submitBtn').textContent = isFree ? 'Count Me In' : 'Reserve My Spot — $10';
+
+      // Reset mat selection when switching
+      document.getElementById('matField').value = '';
+      document.querySelectorAll('.mat-option').forEach(btn => btn.classList.remove('active'));
+    }
+
+    // ─── Mat Selection with limit ─────
+    function selectMat(choice) {
+      const matField = document.getElementById('matField');
+      const ownBtn = document.getElementById('matOwn');
+      const borrowBtn = document.getElementById('matBorrow');
+
+      if (choice === 'borrow' && matsReserved >= MAX_MATS) return;
+
+      ownBtn.classList.toggle('active', choice === 'own');
+      borrowBtn.classList.toggle('active', choice === 'borrow');
+      matField.value = choice === 'own' ? 'Bringing my own mat' : 'Borrowing a mat';
+    }
+
+    function updateMatAvailability() {
+      const left = MAX_MATS - matsReserved;
+      const counter = document.getElementById('matCounter');
+      const borrowBtn = document.getElementById('matBorrow');
+      const leftSpan = document.getElementById('matsLeft');
+
+      leftSpan.textContent = left;
+
+      if (left <= 0) {
+        borrowBtn.classList.add('disabled');
+        borrowBtn.textContent = 'No mats available';
+        counter.textContent = 'All loaner mats have been reserved';
+        // If borrow was selected, clear it
+        if (document.getElementById('matField').value === 'Borrowing a mat') {
+          document.getElementById('matField').value = '';
+          borrowBtn.classList.remove('active');
+        }
+      } else if (left <= 3) {
+        counter.innerHTML = '<span id="matsLeft">' + left + '</span> loaner mats left — going fast';
+      }
+    }
+
+    // Run on load
+    updateMatAvailability();
+
+    // ─── Evening CTA helper (scrolls to RSVP and selects evening) ─────
+    function selectEvening() {
+      setTimeout(() => switchClassType('evening'), 400);
+    }
   </script>
 
 </body>
