@@ -1363,6 +1363,62 @@
       line-height: 1.7;
     }
 
+    .payment-info {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(2,36,82,0.04);
+      border-radius: 12px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .payment-info.show { display: block; }
+
+    .payment-info p {
+      font-size: 0.85rem;
+      color: rgba(2,36,82,0.6);
+      margin-bottom: 1rem;
+    }
+
+    .payment-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .payment-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      width: fit-content;
+    }
+
+    .payment-link:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .payment-link.venmo {
+      background: #008CFF;
+      color: #fff;
+    }
+
+    .payment-link.ig {
+      background: var(--navy);
+      color: var(--cream);
+    }
+
     /* ─── Evening Classes ─────────────────────────── */
     .evening {
       background-color: var(--cream);
@@ -2078,6 +2134,13 @@
       <div class="rsvp-thanks-icon">&#10024;</div>
       <h3>You're In!</h3>
       <p id="thanks-message">We'll see you Wednesday. Check our Instagram for the exact location and any last-minute updates.</p>
+      <div class="payment-info" id="payment-info">
+        <p>Complete your $10 payment via Venmo or send us a DM on Instagram for other payment options.</p>
+        <div class="payment-links">
+          <a href="https://venmo.com/u/Karla-Vasquez-21?txn=pay&amount=10&note=AURAE%20Evening%20Class" target="_blank" rel="noopener" class="payment-link venmo">Pay $10 via Venmo</a>
+          <a href="https://instagram.com/aurae.sculptclub" target="_blank" rel="noopener" class="payment-link ig">DM on Instagram</a>
+        </div>
+      </div>
     </div>
 
     <form class="rsvp-form fade-up" action="https://formspree.io/f/meepknbb" method="POST">
@@ -2215,6 +2278,18 @@
         const thanksEl = document.getElementById('rsvp-thanks');
         if (thanksEl) {
           thanksEl.classList.add('show');
+
+          // Show payment info if evening class was selected
+          const msg = document.getElementById('thanks-message');
+          const paymentInfo = document.getElementById('payment-info');
+          if (currentClassType === 'evening') {
+            msg.textContent = "You're booked for an evening session. Please complete payment below to secure your spot.";
+            paymentInfo.classList.add('show');
+          } else {
+            msg.textContent = "We'll see you Wednesday. Check our Instagram for the exact location and any last-minute updates.";
+            paymentInfo.classList.remove('show');
+          }
+
           // Scroll to RSVP section
           const rsvpSection = document.getElementById('rsvp');
           if (rsvpSection) {
