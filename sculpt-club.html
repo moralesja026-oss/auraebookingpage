@@ -1601,6 +1601,29 @@
     .evening-fields { display: none; }
     .evening-fields.show { display: block; }
 
+    .evening-payment-note {
+      margin-top: 1.2rem;
+      padding: 1.2rem;
+      background: rgba(2,36,82,0.04);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .evening-payment-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .evening-payment-text {
+      font-size: 0.8rem;
+      color: rgba(2,36,82,0.5);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
     /* ─── CTA Section ────────────────────────────── */
     .cta {
       background-color: #011633;
@@ -2187,7 +2210,7 @@
         </div>
       </div>
 
-      <!-- Evening-only: Mat borrowing -->
+      <!-- Evening-only: Mat borrowing & payment info -->
       <div class="evening-fields" id="eveningFields">
         <div class="form-group mat-field">
           <label>Mat Preference</label>
@@ -2197,6 +2220,14 @@
             <button type="button" class="mat-option" id="matBorrow" onclick="selectMat('borrow')">Borrow a mat</button>
           </div>
           <p class="mat-counter" id="matCounter"><span id="matsLeft">10</span> loaner mats available</p>
+        </div>
+        <div class="evening-payment-note">
+          <p class="evening-payment-title">Payment ($10 per class)</p>
+          <p class="evening-payment-text">Pay via Venmo or DM us on Instagram for other payment options.</p>
+          <div class="payment-links">
+            <a href="https://venmo.com/u/Karla-Vasquez-21?txn=pay&amount=10&note=AURAE%20Evening%20Class" target="_blank" rel="noopener" class="payment-link venmo">Pay $10 via Venmo</a>
+            <a href="https://instagram.com/aurae.sculptclub" target="_blank" rel="noopener" class="payment-link ig">DM on Instagram</a>
+          </div>
         </div>
       </div>
 
