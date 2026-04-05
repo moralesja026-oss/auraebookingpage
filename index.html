@@ -979,6 +979,39 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .sb-flyer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .sb-flyer-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,252,216,0.15);
+      background: transparent;
+      color: rgba(255,252,216,0.4);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sb-flyer-btn:hover {
+      border-color: rgba(255,252,216,0.3);
+      color: rgba(255,252,216,0.7);
+    }
+
+    .sb-flyer-btn.active {
+      background: var(--cream);
+      color: var(--navy);
+      border-color: var(--cream);
     }
 
     .sb-flyer-placeholder {
@@ -1323,7 +1356,11 @@
     <div class="sb-content">
       <div class="sb-flyer">
         <div class="sb-flyer-frame slide-in">
-          <img src="sculpt-bloom-flyer-1.png" alt="Sculpt & Bloom — May 16, 10:00 AM, Los Alamos Hills Sports Park, Murrieta CA" loading="lazy">
+          <img id="sbFlyerImg" src="sculpt-bloom-flyer-1.png" alt="Sculpt & Bloom — May 16, 10:00 AM, Los Alamos Hills Sports Park, Murrieta CA" loading="lazy">
+        </div>
+        <div class="sb-flyer-nav slide-in">
+          <button class="sb-flyer-btn active" onclick="switchFlyer(1)">1</button>
+          <button class="sb-flyer-btn" onclick="switchFlyer(2)">2</button>
         </div>
       </div>
 
@@ -1802,6 +1839,20 @@
         animObserver.observe(el);
       });
     })();
+
+    // ─── Sculpt & Bloom flyer toggle ────────────
+    function switchFlyer(page) {
+      var img = document.getElementById('sbFlyerImg');
+      var btns = document.querySelectorAll('.sb-flyer-btn');
+      img.style.opacity = '0';
+      setTimeout(function() {
+        img.src = 'sculpt-bloom-flyer-' + page + '.png';
+        img.style.opacity = '1';
+      }, 300);
+      btns.forEach(function(btn, i) {
+        btn.classList.toggle('active', i + 1 === page);
+      });
+    }
 
     // ─── CTA Button: reveal on scroll ────────────
     (function() {
