@@ -957,6 +957,7 @@
     }
 
     .sb-flyer-frame {
+      position: relative;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255,252,216,0.06);
@@ -967,6 +968,99 @@
       align-items: center;
       justify-content: center;
       aspect-ratio: 4/5;
+    }
+
+    .sb-flyer-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background:
+        linear-gradient(180deg, rgba(1,22,51,0.55) 0%, rgba(1,22,51,0.88) 45%, rgba(1,22,51,0.94) 100%),
+        radial-gradient(circle at 50% 35%, rgba(255,182,193,0.18) 0%, transparent 60%);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 2;
+    }
+
+    .sb-flyer-overlay::before,
+    .sb-flyer-overlay::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 1px;
+      background: rgba(255,182,193,0.45);
+    }
+    .sb-flyer-overlay::before { top: 1.8rem; }
+    .sb-flyer-overlay::after { bottom: 1.8rem; }
+
+    .sb-overlay-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(255,182,193,0.75);
+      margin-bottom: 1.4rem;
+    }
+
+    .sb-overlay-title {
+      font-family: 'Arsenica Trial', 'Playfair Display', 'Georgia', serif;
+      font-size: clamp(2.2rem, 4.2vw, 3rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .sb-overlay-title em {
+      font-style: italic;
+      color: #ffd6dd;
+    }
+
+    .sb-overlay-rule {
+      width: 50px;
+      height: 1px;
+      background: rgba(255,252,216,0.25);
+      margin: 0 auto 1.4rem;
+    }
+
+    .sb-overlay-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,252,216,0.78);
+      max-width: 320px;
+      font-style: italic;
+    }
+
+    .sb-overlay-message strong {
+      font-weight: 400;
+      color: #ffd6dd;
+      font-style: normal;
+      letter-spacing: 0.02em;
+    }
+
+    .sb-overlay-signature {
+      margin-top: 1.6rem;
+      font-family: 'Arsenica Trial', 'Playfair Display', 'Georgia', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(255,252,216,0.5);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 600px) {
+      .sb-flyer-overlay { padding: 2rem 1.4rem; }
+      .sb-overlay-message { font-size: 0.72rem; line-height: 1.75; }
     }
 
     .sb-flyer-frame:hover {
@@ -1512,15 +1606,20 @@
       <h2 class="sb-title slide-in">Sculpt & <em>Bloom.</em></h2>
       <p class="sb-tagline slide-in">move. celebrate. bloom.</p>
       <div class="sb-divider slide-in"></div>
-      <span class="sb-soldout-badge slide-in">Sold Out</span>
       <p class="sb-intro slide-in">A special morning event to celebrate you and the women in your life.</p>
-      <p class="sb-gratitude slide-in">From the bottom of our hearts, <em>thank you</em> to every woman who secured her spot. Your support means the world to us, and we cannot wait to move, celebrate, and bloom alongside you on May 16th.</p>
     </div>
 
     <div class="sb-content">
       <div class="sb-flyer">
         <div class="sb-flyer-frame slide-in">
           <img id="sbFlyerImg" src="sculpt-bloom-flyer-1.png" alt="Sculpt & Bloom — May 16, 10:00 AM, Los Alamos Hills Sports Park, Murrieta CA" loading="lazy">
+          <div class="sb-flyer-overlay" aria-label="Event sold out">
+            <p class="sb-overlay-eyebrow">Sold Out</p>
+            <h3 class="sb-overlay-title">With <em>full</em> hearts.</h3>
+            <div class="sb-overlay-rule"></div>
+            <p class="sb-overlay-message"><strong>Thank you</strong> to every woman who secured her spot. Your love and support mean the world to us — we cannot wait to move, celebrate, and bloom alongside you on May 16th.</p>
+            <p class="sb-overlay-signature">— The Aurae Team</p>
+          </div>
         </div>
         <div class="sb-flyer-nav">
           <button class="sb-flyer-btn active" onclick="switchFlyer(1)">1</button>
