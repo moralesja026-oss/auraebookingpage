@@ -1183,6 +1183,159 @@
       margin-top: 1.2rem;
     }
 
+    /* ─── Sold Out + Waitlist ─────────────────────── */
+    .sb-soldout-badge {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #ffb6c1;
+      background: rgba(255,182,193,0.08);
+      border: 1px solid rgba(255,182,193,0.35);
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      margin-bottom: 1.4rem;
+    }
+
+    .sb-gratitude {
+      max-width: 620px;
+      margin: 1.5rem auto 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(255,252,216,0.55);
+      font-style: italic;
+    }
+
+    .sb-gratitude em {
+      color: #ffb6c1;
+      font-style: italic;
+    }
+
+    .sb-waitlist {
+      max-width: 540px;
+      margin: 4rem auto 0;
+      padding: 2.8rem 2.4rem;
+      background: rgba(255,252,216,0.025);
+      border: 1px solid rgba(255,252,216,0.08);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .sb-waitlist-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(255,252,216,0.35);
+      margin-bottom: 0.9rem;
+    }
+
+    .sb-waitlist-title {
+      font-family: 'Arsenica Trial', 'Playfair Display', 'Georgia', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+
+    .sb-waitlist-title em { font-style: italic; }
+
+    .sb-waitlist-intro {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,252,216,0.45);
+      margin-bottom: 2rem;
+    }
+
+    .sb-waitlist form { text-align: left; }
+
+    .sb-wl-group { margin-bottom: 1.2rem; }
+
+    .sb-wl-label {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,252,216,0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .sb-wl-input,
+    .sb-wl-textarea {
+      width: 100%;
+      background: rgba(255,252,216,0.04);
+      border: 1px solid rgba(255,252,216,0.1);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: var(--cream);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .sb-wl-input::placeholder,
+    .sb-wl-textarea::placeholder { color: rgba(255,252,216,0.2); }
+
+    .sb-wl-input:focus,
+    .sb-wl-textarea:focus {
+      outline: none;
+      border-color: rgba(255,182,193,0.45);
+      background: rgba(255,252,216,0.06);
+    }
+
+    .sb-wl-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .sb-wl-submit {
+      display: block;
+      width: 100%;
+      margin-top: 0.6rem;
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sb-wl-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,252,216,0.12);
+    }
+
+    .sb-wl-submit:disabled { opacity: 0.6; cursor: default; }
+
+    .sb-wl-success {
+      display: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #ffb6c1;
+      font-style: italic;
+      padding: 1rem;
+    }
+
+    .sb-wl-success.show { display: block; }
+
     @media (max-width: 960px) {
       .sb-event { padding: 5rem 2rem; }
       .sb-content {
@@ -1359,7 +1512,9 @@
       <h2 class="sb-title slide-in">Sculpt & <em>Bloom.</em></h2>
       <p class="sb-tagline slide-in">move. celebrate. bloom.</p>
       <div class="sb-divider slide-in"></div>
+      <span class="sb-soldout-badge slide-in">Sold Out</span>
       <p class="sb-intro slide-in">A special morning event to celebrate you and the women in your life.</p>
+      <p class="sb-gratitude slide-in">From the bottom of our hearts, <em>thank you</em> to every woman who secured her spot. Your support means the world to us, and we cannot wait to move, celebrate, and bloom alongside you on May 16th.</p>
     </div>
 
     <div class="sb-content">
@@ -1372,8 +1527,8 @@
           <button class="sb-flyer-btn" onclick="switchFlyer(2)">2</button>
         </div>
         <div style="text-align:center; margin-top:1.5rem;">
-          <a href="https://buy.stripe.com/3cI7sL9db22R0Qc1bRbV601" class="sb-btn" target="_blank" rel="noopener noreferrer">Secure Your Spot</a>
-          <p class="sb-stripe-note" style="margin-top:0.75rem;">Secure checkout via Stripe</p>
+          <a href="#sb-waitlist" class="sb-btn">Join the Waitlist</a>
+          <p class="sb-stripe-note" style="margin-top:0.75rem;">This event is officially sold out</p>
         </div>
       </div>
 
@@ -1412,6 +1567,38 @@
       </div>
     </div>
 
+    <div class="sb-waitlist slide-in" id="sb-waitlist">
+      <p class="sb-waitlist-label">Don't miss the next one</p>
+      <h3 class="sb-waitlist-title">Join the <em>Waitlist</em></h3>
+      <p class="sb-waitlist-intro">Spots will open if any become available, and you'll be the first to know about future Aurae events. Drop your details below and we'll be in touch.</p>
+      <form id="waitlistForm" novalidate>
+        <input type="hidden" name="_subject" value="New Sculpt & Bloom Waitlist Signup" />
+        <input type="hidden" name="_replyto" id="waitlistReplyTo" />
+        <input type="hidden" name="Event" value="Sculpt & Bloom — May 16, 2026" />
+        <div class="sb-wl-group">
+          <label class="sb-wl-label" for="wlName">Name</label>
+          <input class="sb-wl-input" type="text" id="wlName" name="Name" placeholder="Jane Doe" required />
+        </div>
+        <div class="sb-wl-group">
+          <label class="sb-wl-label" for="wlEmail">Email</label>
+          <input class="sb-wl-input" type="email" id="wlEmail" name="Email" placeholder="jane@example.com" required />
+        </div>
+        <div class="sb-wl-group">
+          <label class="sb-wl-label" for="wlPhone">Phone</label>
+          <input class="sb-wl-input" type="tel" id="wlPhone" name="Phone" placeholder="(555) 123-4567" />
+        </div>
+        <div class="sb-wl-group">
+          <label class="sb-wl-label" for="wlGuests">Number of Spots Needed</label>
+          <input class="sb-wl-input" type="number" id="wlGuests" name="Spots" min="1" max="10" placeholder="1" required />
+        </div>
+        <div class="sb-wl-group">
+          <label class="sb-wl-label" for="wlNote">Anything we should know? (optional)</label>
+          <textarea class="sb-wl-textarea" id="wlNote" name="Note" placeholder="Share any questions or details..."></textarea>
+        </div>
+        <button type="submit" class="sb-wl-submit" id="waitlistBtn">Join the Waitlist</button>
+      </form>
+      <div class="sb-wl-success" id="waitlistSuccess">You're on the list — thank you for being part of the Aurae community. We'll reach out the moment something opens up.</div>
+    </div>
 
   </section>
 
@@ -1726,6 +1913,34 @@
           form.style.display = 'none';
           document.getElementById('selectedClassBadge').style.display = 'none';
           var msg = document.getElementById('successMsg');
+          msg.classList.add('show');
+          msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          btn.textContent = 'Error Try Again';
+          btn.disabled = false;
+        }
+      }).catch(function () {
+        btn.textContent = 'Error Try Again';
+        btn.disabled = false;
+      });
+    });
+
+    // ─── Waitlist Form ───────────────────────────
+    document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = this;
+      var btn = document.getElementById('waitlistBtn');
+      document.getElementById('waitlistReplyTo').value = document.getElementById('wlEmail').value;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch('https://formsubmit.co/ajax/auraesculpt@gmail.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          var msg = document.getElementById('waitlistSuccess');
           msg.classList.add('show');
           msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
